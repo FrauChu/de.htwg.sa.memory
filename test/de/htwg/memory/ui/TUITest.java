@@ -6,12 +6,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TUITest {
-	TUI tui;
-	
-	@Before
-	public void setUp() {
-		tui = new TUI();
-	}
+    TUI tui;
+
+    @Before
+    public void setUp() {
+        tui = new TUI();
+    }
 
 
 }

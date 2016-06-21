@@ -13,36 +13,39 @@ import javax.persistence.Table;
 @Table(name = "highscore")
 public class PersistentHighscore implements Serializable {
 
-	private static final long serialVersionUID = 1538704903825440126L;
+    private static final long serialVersionUID = 1538704903825440126L;
 
-	@Id
-	@Column(name = "id")
-	private String id;
+    @Id
+    @Column(name = "id")
+    private String id;
 
-	private String Name;
-	private int score;
+    private String Name;
+    private int score;
 
-	public PersistentHighscore() {
-	}
+    public PersistentHighscore() {
+    }
 
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getName() {
-		return Name;
-	}
-	public void setName(String name) {
-		Name = name;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public int getScore() {
-		return score;
-	}
-	public void setScore(int score) {
-		this.score = score;
-	}
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
 }

@@ -9,18 +9,18 @@ import java.lang.reflect.Modifier;
 import org.junit.Test;
 
 public class UtilTest {
-	// No Util Methodes yet.
-	
-	@Test
-	public void testConstructorIsPrivate() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-	  Constructor<Util> constructor = Util.class.getDeclaredConstructor();
-	  assertTrue(Modifier.isPrivate(constructor.getModifiers()));
-	  constructor.setAccessible(true);
-	  constructor.newInstance();
-	}
-	
-	@Test
-	public void testCreateImageFromString() {
-		assertNotNull(Util.createImageFromString("?"));
-	}
+    // No Util Methodes yet.
+
+    @Test
+    public void testConstructorIsPrivate() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        Constructor<Util> constructor = Util.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+        constructor.newInstance();
+    }
+
+    @Test
+    public void testCreateImageFromString() {
+        assertNotNull(Util.createImageFromString("?"));
+    }
 }

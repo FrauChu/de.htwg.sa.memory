@@ -5,14 +5,14 @@ import java.util.List;
 import de.htwg.memory.entities.IHighscore;
 
 public interface IHighscoreDAO {
-	
-	void saveHighscore(final IHighscore highscore);
 
-	boolean containsHighscoreById(final String id);
-	
-	IHighscore getHighscoreById(final String id);
+    void saveHighscore(final IHighscore highscore);
 
-	void deleteHighscoreById(final String id);
-	
-	List<IHighscore> getAllHighscores();
+    boolean containsHighscoreById(final String id);
+
+    IHighscore getHighscoreById(final String id);
+
+    void deleteHighscoreById(final String id);
+
+    List<IHighscore> getAllHighscores();
 }

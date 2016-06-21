@@ -17,94 +17,94 @@ import org.ektorp.impl.StdCouchDbInstance;
 
 public class HighscoreCouchdbDAO implements IHighscoreDAO {
 
-	private CouchDbConnector db = null;
-	
-	public HighscoreCouchdbDAO() {
-		HttpClient client = null;
-		try {
-			client = new StdHttpClient.Builder().url("http://localhost:5984").build();
+    private CouchDbConnector db = null;
 
-		} catch (MalformedURLException e) {
-		}
-		CouchDbInstance dbInstance = new StdCouchDbInstance(client);
-		db = dbInstance.createConnector("memory_db", true);
-		db.createDatabaseIfNotExists();
-	}
+    public HighscoreCouchdbDAO() {
+        HttpClient client = null;
+        try {
+            client = new StdHttpClient.Builder().url("http://localhost:5984").build();
 
-	private IHighscore copyHighscore(PersistentHighscore phighscore) {
-		if(phighscore == null) {
-			return null;
-		}
-		IHighscore highscore = new Highscore();
-		highscore.setId(phighscore.getId());
-		highscore.setName(phighscore.getName());
-		highscore.setScore(phighscore.getScore());
+        } catch (MalformedURLException e) {
+        }
+        CouchDbInstance dbInstance = new StdCouchDbInstance(client);
+        db = dbInstance.createConnector("memory_db", true);
+        db.createDatabaseIfNotExists();
+    }
 
-		return highscore;
-	}
+    private IHighscore copyHighscore(PersistentHighscore phighscore) {
+        if (phighscore == null) {
+            return null;
+        }
+        IHighscore highscore = new Highscore();
+        highscore.setId(phighscore.getId());
+        highscore.setName(phighscore.getName());
+        highscore.setScore(phighscore.getScore());
 
-	private PersistentHighscore copyHighscore(IHighscore highscore) {
-		if(highscore == null) {
-			return null;
-		}
+        return highscore;
+    }
 
-		String highscoreId = highscore.getId();
-		PersistentHighscore phighscore;
-		if(containsHighscoreById(highscoreId)) {
-			// The Object already exists within the session
-			phighscore = db.find(PersistentHighscore.class, highscoreId);
-		} else {
-			// A new database entry
-			phighscore = new PersistentHighscore();
-		}
+    private PersistentHighscore copyHighscore(IHighscore highscore) {
+        if (highscore == null) {
+            return null;
+        }
 
-		phighscore.setId(highscore.getId());
-		phighscore.setName(highscore.getName());
-		phighscore.setScore(highscore.getScore());
+        String highscoreId = highscore.getId();
+        PersistentHighscore phighscore;
+        if (containsHighscoreById(highscoreId)) {
+            // The Object already exists within the session
+            phighscore = db.find(PersistentHighscore.class, highscoreId);
+        } else {
+            // A new database entry
+            phighscore = new PersistentHighscore();
+        }
 
-		return phighscore;
-	}
+        phighscore.setId(highscore.getId());
+        phighscore.setName(highscore.getName());
+        phighscore.setScore(highscore.getScore());
 
-	@Override
-	public void saveHighscore(IHighscore highscore) {
-		if (containsHighscoreById(highscore.getId())) {
-			db.update(copyHighscore(highscore));
-		} else {
-			db.create(highscore.getId(), copyHighscore(highscore));
-		}
-	}
+        return phighscore;
+    }
 
-	@Override
-	public boolean containsHighscoreById(String id) {
-		if (getHighscoreById(id) == null) {
-			return false;
-		}
-		return true;
-	}
+    @Override
+    public void saveHighscore(IHighscore highscore) {
+        if (containsHighscoreById(highscore.getId())) {
+            db.update(copyHighscore(highscore));
+        } else {
+            db.create(highscore.getId(), copyHighscore(highscore));
+        }
+    }
 
-	@Override
-	public IHighscore getHighscoreById(String id) {
-		PersistentHighscore g = db.find(PersistentHighscore.class, id);
-		if (g == null) {
-			return null;
-		}
-		return copyHighscore(g);
-	}
+    @Override
+    public boolean containsHighscoreById(String id) {
+        if (getHighscoreById(id) == null) {
+            return false;
+        }
+        return true;
+    }
 
-	@Override
-	public void deleteHighscoreById(String id) {
-		db.delete(copyHighscore(getHighscoreById(id)));
-	}
+    @Override
+    public IHighscore getHighscoreById(String id) {
+        PersistentHighscore g = db.find(PersistentHighscore.class, id);
+        if (g == null) {
+            return null;
+        }
+        return copyHighscore(g);
+    }
 
-	@Override
-	public List<IHighscore> getAllHighscores() {
-		ViewQuery q = new ViewQuery().allDocs().includeDocs(true);
-				
-		List<IHighscore> lst = new ArrayList<>();
-		for (PersistentHighscore pHighscore : db.queryView(q, PersistentHighscore.class)) {
-			lst.add(copyHighscore(pHighscore));
-		}
+    @Override
+    public void deleteHighscoreById(String id) {
+        db.delete(copyHighscore(getHighscoreById(id)));
+    }
 
-		return lst;
-	}
+    @Override
+    public List<IHighscore> getAllHighscores() {
+        ViewQuery q = new ViewQuery().allDocs().includeDocs(true);
+
+        List<IHighscore> lst = new ArrayList<>();
+        for (PersistentHighscore pHighscore : db.queryView(q, PersistentHighscore.class)) {
+            lst.add(copyHighscore(pHighscore));
+        }
+
+        return lst;
+    }
 }
