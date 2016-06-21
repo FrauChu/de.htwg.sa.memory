@@ -71,10 +71,7 @@ public class HighscoreHibernateDAO implements IHighscoreDAO {
 
     @Override
     public boolean containsHighscoreById(String id) {
-        if (getHighscoreById(id) != null) {
-            return true;
-        }
-        return false;
+        return getHighscoreById(id) != null;
     }
 
     @Override
@@ -115,7 +112,7 @@ public class HighscoreHibernateDAO implements IHighscoreDAO {
         @SuppressWarnings("unchecked")
         List<PersistentHighscore> results = criteria.list();
 
-        List<IHighscore> highscores = new ArrayList<IHighscore>();
+        List<IHighscore> highscores = new ArrayList<>();
         for (PersistentHighscore phighscore : results) {
             IHighscore highscore = copyHighscore(phighscore);
             highscores.add(highscore);

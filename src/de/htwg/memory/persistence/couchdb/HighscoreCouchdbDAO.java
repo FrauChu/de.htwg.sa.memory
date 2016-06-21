@@ -9,7 +9,6 @@ import de.htwg.memory.entities.IHighscore;
 import de.htwg.memory.persistence.IHighscoreDAO;
 import org.ektorp.CouchDbConnector;
 import org.ektorp.CouchDbInstance;
-import org.ektorp.Revision;
 import org.ektorp.ViewQuery;
 import org.ektorp.http.HttpClient;
 import org.ektorp.http.StdHttpClient;

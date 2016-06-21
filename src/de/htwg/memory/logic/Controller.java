@@ -4,16 +4,15 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map.Entry;
+import java.util.UUID;
 
 import javax.imageio.ImageIO;
 
 import com.google.inject.Inject;
-import de.htwg.memory.entities.Board;
-import de.htwg.memory.entities.IMemoryCard;
+import de.htwg.memory.entities.*;
 import de.htwg.memory.entities.Board.PickResult;
-import de.htwg.memory.entities.MemoryCard;
-import de.htwg.memory.entities.MemoryCardEventListener;
 import de.htwg.memory.persistence.IHighscoreDAO;
 
 public class Controller implements IController {
@@ -35,6 +34,14 @@ public class Controller implements IController {
         matchPerPlayer = new int[]{0};
         waitingForHide = false;
         this.highscoreDAO = highscoreDAO;
+
+        // TODO
+        /*IHighscore hs = new Highscore();
+        hs.setId(UUID.randomUUID().toString());
+        hs.setName("Sandra");
+        hs.setScore(420);
+        highscoreDAO.saveHighscore(hs);
+        List<IHighscore> highscoreList = highscoreDAO.getAllHighscores();*/
     }
 
     @Override
