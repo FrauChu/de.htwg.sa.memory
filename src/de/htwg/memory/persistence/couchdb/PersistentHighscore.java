@@ -1,7 +1,5 @@
 package de.htwg.memory.persistence.couchdb;
 
-import java.util.Set;
-
 import org.ektorp.support.CouchDbDocument;
 import org.ektorp.support.TypeDiscriminator;
 

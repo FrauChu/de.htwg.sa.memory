@@ -21,7 +21,7 @@ public class HighscoreCouchdbDAO implements IHighscoreDAO {
     public HighscoreCouchdbDAO() {
         HttpClient client = null;
         try {
-            client = new StdHttpClient.Builder().url("http://localhost:5984").build();
+            client = new StdHttpClient.Builder().url("http://lenny2.in.htwg-konstanz.de:5984").build();
 
         } catch (MalformedURLException e) {
         }

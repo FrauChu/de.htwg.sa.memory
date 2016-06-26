@@ -6,9 +6,6 @@ import de.htwg.memory.entities.MemoryCardEventListener;
 
 import java.io.File;
 
-/**
- * Created by simon on 21.06.16.
- */
 public interface IController extends MemoryCardEventListener {
     void loadBoard(File gameFile);
 

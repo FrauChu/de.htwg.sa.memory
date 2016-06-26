@@ -1,8 +1,5 @@
 package de.htwg.memory.entities;
 
-/**
- * Created by simon on 21.06.16.
- */
 public interface IHighscore {
 
     String getId();
