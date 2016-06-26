@@ -42,4 +42,6 @@ public interface UiEventListener {
      * Called when the game is reset, to also reset all local lvariables.
      */
     void gameReset();
+
+	void playerNameChanged(String name);
 }

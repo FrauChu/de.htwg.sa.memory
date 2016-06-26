@@ -51,6 +51,6 @@ public class Highscore implements IHighscore {
 
     @Override
     public String toString() {
-        return Name + ':' + score;
+        return Name + ": " + score;
     }
 }

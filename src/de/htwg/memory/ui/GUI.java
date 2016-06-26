@@ -77,7 +77,7 @@ public class GUI extends JFrame implements UiEventListener {
 
     private final void addMenuBar() {
         JMenuBar menuBar = new JMenuBar();
-        JMenu menu = new JMenu("Menü");
+        JMenu menu = new JMenu("Menu");
         menuBar.add(menu);
         menu.setFont(Util.getOptimalFont());
 
@@ -190,4 +190,10 @@ public class GUI extends JFrame implements UiEventListener {
         realoadButtons();
         setWindowSize();
     }
+
+	@Override
+	public void playerNameChanged(String name) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -21,10 +21,13 @@ import de.htwg.memory.entities.MemoryCard;
 import de.htwg.memory.persistence.IHighscoreDAO;
 
 public class Controller implements IController {
+	private static final String DEFAULT_NAME = "Anonymus";
+	
     private Board board;
     private int countRounds;
     private int players;
     private int matchPerPlayer[];
+    private String soloName;
     private boolean waitingForHide;
     @Inject
     private IHighscoreDAO highscoreDAO;
@@ -38,6 +41,7 @@ public class Controller implements IController {
         countRounds = 0;
         players = 1;
         matchPerPlayer = new int[]{0};
+        soloName = DEFAULT_NAME;
         waitingForHide = false;
     }
 
@@ -162,6 +166,13 @@ public class Controller implements IController {
         resetGame();
     }
 
+    @Override
+    public void setPlayerName(String name) {
+        this.soloName = name;
+        firePlayerCountChanged(this.players);
+        resetGame();
+    }
+
     /**
      * Returns 0-based round number
      *
@@ -190,10 +201,12 @@ public class Controller implements IController {
 
     @Override
     public void fireWin() {
-        IHighscore hs = new Highscore();
-        //hs.setName();
-        hs.setScore(this.countRounds);
-        highscoreDAO.saveHighscore(hs);
+    	if (players == 1) {
+	        IHighscore hs = new Highscore();
+	        hs.setName(soloName);
+	        hs.setScore(this.countRounds);
+	        highscoreDAO.saveHighscore(hs);
+    	}
 
         for (UiEventListener l : eventListeners) {
             l.win();
@@ -232,6 +245,13 @@ public class Controller implements IController {
     public void firePlayerCountChanged(int players) {
         for (UiEventListener l : eventListeners) {
             l.playerCountChanged(players);
+        }
+    }
+
+    @Override
+    public void firePlayerNameChanged(String name) {
+        for (UiEventListener l : eventListeners) {
+            l.playerNameChanged(name);
         }
     }
 

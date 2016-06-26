@@ -16,11 +16,15 @@ public class MultiplayerOptionListener implements ActionListener {
             Main.getControllerInstance().setPlayerCount(1);
             src.setSelected(false);
         } else {
-            String s = JOptionPane.showInputDialog(null, "Enter number of Players", "2");
+            String s = JOptionPane.showInputDialog(null, "Enter number of Players or name for Highscore", "2");
             if (s == null) // Canceled
                 return;
-            Main.getControllerInstance().setPlayerCount(Integer.parseInt(s));
-            src.setSelected(true);
+            try {
+	            Main.getControllerInstance().setPlayerCount(Integer.parseInt(s));
+	            src.setSelected(true);
+            } catch (NumberFormatException e2) {
+            	Main.getControllerInstance().setPlayerName(s);
+            }
         }
     }
 }

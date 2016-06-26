@@ -160,4 +160,10 @@ public class TUI implements UiEventListener, KeyListener {
         handleInput(e.getKeyChar());
         e.consume();
     }
+
+	@Override
+	public void playerNameChanged(String name) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -54,4 +54,8 @@ public interface IController extends MemoryCardEventListener {
     void removeListener(UiEventListener listener);
 
     List<IHighscore> getHighscore();
+
+	void setPlayerName(String name);
+
+	void firePlayerNameChanged(String name);
 }
