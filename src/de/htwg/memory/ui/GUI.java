@@ -81,14 +81,22 @@ public class GUI extends JFrame implements UiEventListener {
         JMenu menu = new JMenu("Menü");
         menuBar.add(menu);
         menu.setFont(Util.getOptimalFont());
+
         JMenuItem load = new JMenuItem("Load");
         menu.add(load);
         load.addActionListener(new LoadOptionListener());
         load.setFont(Util.getOptimalFont());
+
         JMenuItem multiplayer = new JMenuItem("Use multiplayer");
         menu.add(multiplayer);
         multiplayer.addActionListener(new MultiplayerOptionListener());
         multiplayer.setFont(Util.getOptimalFont());
+
+        JMenuItem highscore = new JMenuItem("Show highscore");
+        menu.add(highscore);
+        highscore.addActionListener(new HighscoreOptionListener());
+        highscore.setFont(Util.getOptimalFont());
+
         JMenuItem restart = new JMenuItem("Restart");
         menu.add(restart);
         restart.addActionListener(new ActionListener() {
@@ -98,6 +106,7 @@ public class GUI extends JFrame implements UiEventListener {
             }
         });
         restart.setFont(Util.getOptimalFont());
+
         JMenuItem exit = new JMenuItem("Exit");
         menu.add(exit);
         exit.addActionListener(new ActionListener() {

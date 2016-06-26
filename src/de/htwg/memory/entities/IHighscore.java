@@ -1,6 +1,6 @@
 package de.htwg.memory.entities;
 
-public interface IHighscore {
+public interface IHighscore extends Comparable<IHighscore> {
 
     String getId();
 

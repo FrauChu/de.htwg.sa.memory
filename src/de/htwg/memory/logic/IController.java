@@ -1,10 +1,9 @@
 package de.htwg.memory.logic;
 
-import de.htwg.memory.entities.Board;
-import de.htwg.memory.entities.IMemoryCard;
-import de.htwg.memory.entities.MemoryCardEventListener;
+import de.htwg.memory.entities.*;
 
 import java.io.File;
+import java.util.List;
 
 public interface IController extends MemoryCardEventListener {
     void loadBoard(File gameFile);
@@ -53,4 +52,6 @@ public interface IController extends MemoryCardEventListener {
     void addListener(UiEventListener listener);
 
     void removeListener(UiEventListener listener);
+
+    List<IHighscore> getHighscore();
 }

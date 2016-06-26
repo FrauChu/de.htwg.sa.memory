@@ -34,4 +34,14 @@ public class Highscore implements IHighscore {
     public void setScore(int score) {
         this.score = score;
     }
+
+    @Override
+    public int compareTo(IHighscore o) {
+        return this.getScore() - o.getScore();
+    }
+
+    @Override
+    public String toString() {
+        return Name + ':' + score;
+    }
 }

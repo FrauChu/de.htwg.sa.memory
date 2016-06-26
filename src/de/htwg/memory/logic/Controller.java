@@ -3,6 +3,7 @@ package de.htwg.memory.logic;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
@@ -36,12 +37,7 @@ public class Controller implements IController {
         this.highscoreDAO = highscoreDAO;
 
         // TODO
-        /*IHighscore hs = new Highscore();
-        hs.setId(UUID.randomUUID().toString());
-        hs.setName("Sandra");
-        hs.setScore(420);
-        highscoreDAO.saveHighscore(hs);
-        List<IHighscore> highscoreList = highscoreDAO.getAllHighscores();*/
+        //List<IHighscore> highscoreList = highscoreDAO.getAllHighscores();
     }
 
     @Override
@@ -184,7 +180,21 @@ public class Controller implements IController {
     }
 
     @Override
+    public List<IHighscore> getHighscore() {
+        List<IHighscore> highscore = this.highscoreDAO.getAllHighscores();
+        Collections.sort(highscore);
+
+        return highscore;
+    }
+
+    @Override
     public void fireWin() {
+        IHighscore hs = new Highscore();
+        hs.setId(UUID.randomUUID().toString());
+        //hs.setName();
+        hs.setScore(this.countRounds);
+        highscoreDAO.saveHighscore(hs);
+
         for (UiEventListener l : eventListeners) {
             l.win();
         }
