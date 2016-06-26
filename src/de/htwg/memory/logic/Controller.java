@@ -35,9 +35,6 @@ public class Controller implements IController {
         matchPerPlayer = new int[]{0};
         waitingForHide = false;
         this.highscoreDAO = highscoreDAO;
-
-        // TODO
-        //List<IHighscore> highscoreList = highscoreDAO.getAllHighscores();
     }
 
     @Override
@@ -190,7 +187,6 @@ public class Controller implements IController {
     @Override
     public void fireWin() {
         IHighscore hs = new Highscore();
-        hs.setId(UUID.randomUUID().toString());
         //hs.setName();
         hs.setScore(this.countRounds);
         highscoreDAO.saveHighscore(hs);

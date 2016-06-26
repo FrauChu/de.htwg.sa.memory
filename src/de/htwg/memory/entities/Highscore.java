@@ -1,9 +1,18 @@
 package de.htwg.memory.entities;
 
+import java.util.UUID;
+
 public class Highscore implements IHighscore {
     private String id;
     private String Name;
     private int score;
+
+    public Highscore() {
+        this.id = UUID.randomUUID().toString();
+    }
+    public Highscore(String id) {
+        this.id = id;
+    }
 
     @Override
     public String getId() {

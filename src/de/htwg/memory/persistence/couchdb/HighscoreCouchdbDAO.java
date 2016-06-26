@@ -34,8 +34,7 @@ public class HighscoreCouchdbDAO implements IHighscoreDAO {
         if (phighscore == null) {
             return null;
         }
-        IHighscore highscore = new Highscore();
-        highscore.setId(phighscore.getId());
+        IHighscore highscore = new Highscore(phighscore.getId());
         highscore.setName(phighscore.getName());
         highscore.setScore(phighscore.getScore());
 
