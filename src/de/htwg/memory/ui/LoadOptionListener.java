@@ -8,7 +8,6 @@ import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 
-import de.htwg.memory.logic.Controller;
 import de.htwg.memory.main.Main;
 
 public class LoadOptionListener implements ActionListener {

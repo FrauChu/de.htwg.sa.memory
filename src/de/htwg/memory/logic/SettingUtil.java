@@ -7,7 +7,7 @@ public final class SettingUtil {
     }
 
     private static String hiddenValue = " ? ";
-    private static int numberOfCardsToMatch = 3;
+    private static int numberOfCardsToMatch = 2;
 
     public static String getHiddenValue() {
         return hiddenValue;

@@ -7,13 +7,17 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.UUID;
 
 import javax.imageio.ImageIO;
 
 import com.google.inject.Inject;
-import de.htwg.memory.entities.*;
+
+import de.htwg.memory.entities.Board;
 import de.htwg.memory.entities.Board.PickResult;
+import de.htwg.memory.entities.Highscore;
+import de.htwg.memory.entities.IHighscore;
+import de.htwg.memory.entities.IMemoryCard;
+import de.htwg.memory.entities.MemoryCard;
 import de.htwg.memory.persistence.IHighscoreDAO;
 
 public class Controller implements IController {
@@ -22,19 +26,19 @@ public class Controller implements IController {
     private int players;
     private int matchPerPlayer[];
     private boolean waitingForHide;
+    @Inject
     private IHighscoreDAO highscoreDAO;
 
     private LinkedList<UiEventListener> eventListeners;
 
     @Inject
-    public Controller(IHighscoreDAO highscoreDAO) {
+    public Controller() {
         eventListeners = new LinkedList<>();
         board = null;
         countRounds = 0;
         players = 1;
         matchPerPlayer = new int[]{0};
         waitingForHide = false;
-        this.highscoreDAO = highscoreDAO;
     }
 
     @Override

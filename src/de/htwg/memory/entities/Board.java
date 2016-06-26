@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-import de.htwg.memory.logic.Controller;
 import de.htwg.memory.logic.SettingUtil;
 import de.htwg.memory.main.Main;
 

@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-import de.htwg.memory.logic.Controller;
 import de.htwg.memory.main.Main;
 
 public class MultiplayerOptionListener implements ActionListener {

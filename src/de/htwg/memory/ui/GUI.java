@@ -17,7 +17,6 @@ import javax.swing.JPanel;
 
 import de.htwg.memory.entities.Board;
 import de.htwg.memory.entities.MemoryCard;
-import de.htwg.memory.logic.Controller;
 import de.htwg.memory.logic.IController;
 import de.htwg.memory.logic.UiEventListener;
 import de.htwg.memory.logic.Util;

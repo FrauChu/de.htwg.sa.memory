@@ -1,6 +1,5 @@
 package de.htwg.memory.logic;
 
-import de.htwg.memory.entities.Board;
 
 public interface UiEventListener {
     /**

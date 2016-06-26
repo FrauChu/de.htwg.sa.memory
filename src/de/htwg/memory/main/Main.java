@@ -4,7 +4,6 @@ import java.io.File;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import de.htwg.memory.logic.Controller;
 import de.htwg.memory.logic.IController;
 import de.htwg.memory.ui.GUI;
 import de.htwg.memory.ui.TUI;
@@ -13,8 +12,7 @@ public final class Main {
     private static Injector injector = Guice.createInjector(new MainModule());
     private static IController controller = null;
 
-    private Main() {
-    }
+    private Main() { }
 
     public static void main(String[] args) {
         IController c = getControllerInstance();
