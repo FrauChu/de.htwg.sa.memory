@@ -2,8 +2,14 @@ package de.htwg.memory.entities;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
 
+import scala.concurrent.Await;
+import scala.concurrent.Future;
+import akka.pattern.Patterns;
+import de.htwg.memory.actor.ActorFactory;
+import de.htwg.memory.actor.message.HideMessage;
+import de.htwg.memory.actor.message.ResetMessage;
+import de.htwg.memory.actor.message.ShuffleMessage;
 import de.htwg.memory.logic.SettingUtil;
 import de.htwg.memory.main.Main;
 
@@ -156,34 +162,33 @@ public class Board {
     }
 
     public void shuffle(int shuffleCount) {
-        Random r = new Random();
-        for (int i = 0; i < shuffleCount; i++) {
-            int x1 = r.nextInt(memoryCards[0].length);
-            int y1 = r.nextInt(memoryCards.length);
-            int x2 = r.nextInt(memoryCards[0].length);
-            int y2 = r.nextInt(memoryCards.length);
-
-            MemoryCard temp = memoryCards[y1][x1];
-            memoryCards[y1][x1] = memoryCards[y2][x2];
-            memoryCards[y2][x2] = temp;
-        }
+    	ShuffleMessage sm = new ShuffleMessage(memoryCards, shuffleCount);
+    	Future<Object> fut = Patterns.ask(ActorFactory.getMasterRef(), sm, SettingUtil.getTimeout());
+    	try {
+    		Await.result(fut, SettingUtil.getTimeout().duration());
+    	} catch (Exception e) {
+            e.printStackTrace();
+		}
     }
 
     public void hideAll() {
-        for (int i = 0; i < memoryCards.length; i++) {
-            for (int j = 0; j < memoryCards[i].length; j++) {
-                getCard(i, j).setVisible(false);
-            }
-        }
+    	HideMessage hm = new HideMessage(memoryCards);
+    	Future<Object> fut = Patterns.ask(ActorFactory.getMasterRef(), hm, SettingUtil.getTimeout());
+    	try {
+    		Await.result(fut, SettingUtil.getTimeout().duration());
+    	} catch (Exception e) {
+            e.printStackTrace();
+		}
     }
 
     public void reset() {
-        for (int i = 0; i < memoryCards.length; i++) {
-            for (int j = 0; j < memoryCards[i].length; j++) {
-                getCard(i, j).setVisible(false);
-                getCard(i, j).setSolved(false);
-            }
-        }
+    	ResetMessage rm = new ResetMessage(memoryCards);
+    	Future<Object> fut = Patterns.ask(ActorFactory.getMasterRef(), rm, SettingUtil.getTimeout());
+    	try {
+    		Await.result(fut, SettingUtil.getTimeout().duration());
+    	} catch (Exception e) {
+            e.printStackTrace();
+		}
     }
 
     @Override

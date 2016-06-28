@@ -10,8 +10,12 @@ import java.util.Map.Entry;
 
 import javax.imageio.ImageIO;
 
+import akka.pattern.Patterns;
+
 import com.google.inject.Inject;
 
+import de.htwg.memory.actor.ActorFactory;
+import de.htwg.memory.actor.message.SaveMessage;
 import de.htwg.memory.entities.Board;
 import de.htwg.memory.entities.Board.PickResult;
 import de.htwg.memory.entities.Highscore;
@@ -169,8 +173,6 @@ public class Controller implements IController {
     @Override
     public void setPlayerName(String name) {
         this.soloName = name;
-        firePlayerCountChanged(this.players);
-        resetGame();
     }
 
     /**
@@ -205,7 +207,9 @@ public class Controller implements IController {
 	        IHighscore hs = new Highscore();
 	        hs.setName(soloName);
 	        hs.setScore(this.countRounds);
-	        highscoreDAO.saveHighscore(hs);
+
+	    	SaveMessage sm = new SaveMessage(hs, highscoreDAO);
+	    	Patterns.ask(ActorFactory.getMasterRef(), sm, SettingUtil.getTimeout());
     	}
 
         for (UiEventListener l : eventListeners) {
